@@ -1,0 +1,117 @@
+!!! 5
+html
+	head
+		script(type='text/javascript', src='/javascripts/formexp.js')
+		script(type='text/javascript', src='/javascripts/jquery.js')
+		script(type='text/javascript', src='/javascripts/funciones.js')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/estilo.css', media='screen')
+		title Poner titulo del proyecto
+	body
+		table(width='1000', bordercolor='purple', align='center', border='10', cellspacing='10', cellpadding='10')
+			tr
+				td(colspan='7', align='left')
+					table(width='100%')
+						tr
+							td(colspan='4', align='left')
+								b.titulos Datos:
+							td(width='20%', align='center')
+								b.titulos  N&uacutemero de Pagos:
+							td(width='20%', align='center')
+								b.titulos Promedio:
+							td(width='20%', align='center')
+								b.titulos N&uacutemero de tarjetas:
+						tr
+						- for(var a=0; a<datos.length;a++){
+							td(width='5%', align='right')
+								#mas_0Cat_a
+									img.datos(onclick='display0Cat_'+a+'()', alt='mores', src='/images/plus1.png')
+								#min_0Cat_a
+									img.datos(onclick='undisplay0Cat_'+a+'()', alt='min', src='/images/mins1.png')
+							td(colspan='3', align='left')
+								b.titulos titulos.cero[a]
+							td(colspan='3',align='left')
+								#datos_0Cat_a
+									table(width='100%')
+										tr
+											td(width='20%', align='center')
+												b.datos=datos[a][0][0][0][0]
+											td(width='20%', align='center')
+												b.datos=datos[a][0][0][0][1]
+											td(width='20%', align='center')
+												b.datos=datos[a][0][0][0][2]
+						tr
+						- for( var b=0; b<datos[a].length; b++){
+							td(colspan='7', align='left')
+								#1aCat_b
+									table(width='100%')
+										tr
+											td(width='5%', align='left')
+												b.titulos
+											td(width='5%', align='right')
+												#mas_1aCat_b
+													img.datos(onclick='display1aCat_'+b+'()', alt='mores', src='/images/plus1.png')
+												#min_1aCat_b
+													img.datos(onclick='undisplay1aCat_'+b+'()', alt='min', src='/images/mins1.png')
+											td(colspan='2', align='left')
+												b.titulos categoria 1
+											td(colspan='3',align='left')
+												#datos_1aCat_b
+													table(width='100%')
+														tr
+															td(width='20%', align='center')
+																b.datos=datos[a][b][0][0][0]
+															td(width='20%', align='center')
+																b.datos=datos[a][b][0][0][1]
+															td(width='20%', align='center')
+																b.datos=datos[a][b][0][0][2]
+										tr
+										- for(var c=0; c<datos[a][b].length; c++){
+											td(colspan='7', align='left')
+												#2aCat_c
+													table(width='100%')
+														tr
+															td(width='5%', align='left')
+																b.titulos
+															td(width='5%', align='right')
+																b.titulos
+															td(width='5%', align='right')
+																#mas_2aCat_c
+																	img.datos(onclick='display2aCat_'+c+'()', alt='mores', src='/images/plus1.png')
+																#min_2aCat_c
+																	img.datos(onclick='undisplay2aCat_'+c+'()', alt='min', src='/images/mins1.png')
+															td(colspan='1', align='left')
+																b.titulos categoria2
+															td(colspan='3',align='left')
+																#datos_2aCat_c
+																	table(width='100%')
+																		tr
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][0][0]
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][0][1]
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][0][2]
+														tr
+														- for(var d=0; d< datos[a][b][c].length; d++){
+															td(colspan='7',align='left')
+																#3aCat_d
+																	table(width='100%')
+																		tr
+																			td(width='5%', align='left')
+																				b.titulos
+																			td(width='5%', align='right')
+																				b.titulos
+																			td(width='5%', align='right')
+																				b.titulos
+																			td(colspan='1', align='left')
+																				b.titulos Edad1
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][d][0]
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][d][1]
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][d][2]
+													- }
+										-}
+							-}
+						-}							

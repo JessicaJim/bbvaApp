@@ -1,0 +1,39 @@
+!!! 5
+html
+	head
+		script(type='text/javascript', src='/javascripts/formexp.js')
+		script(type='text/javascript', src='/javascripts/jquery.js')
+		script(type='text/javascript', src='/javascripts/funciones.js')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/estilo.css', media='screen')
+		title Prueba 1
+	body
+		table(width='1200', bordercolor='purple', align='center', border='10', cellspacing='10', cellpadding='10')
+			tr
+				td(colspan='7', align='left')
+					table(width='100%')
+						#titulos
+							tr
+								td(colspan='4', align='left')
+									label(for='hash')
+									b.titulos People:
+								td(width='20%', align='center')
+									label(for='noPayments')
+									b.titulos Num Payments:
+								td(width='20%', align='center')
+									label(for='avg')
+									b.titulos Avg:
+								td(width='20%', align='center')
+									label(for='numCards')
+									b.titulos Num Cards:
+							
+							block content
+							tr
+								td(colspan='7', align='left')
+									block content1
+									tr
+										td(colspan='7', align='left')
+											block content2
+											tr
+												td(colspan='7', align='left')
+													block content3
+												

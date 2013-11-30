@@ -1,0 +1,233 @@
+!!! 5
+html
+	head
+		script(type='text/javascript', src='/javascripts/formexp.js')
+		script(type='text/javascript', src='/javascripts/jquery.js')
+		script(type='text/javascript', src='/javascripts/funciones.js')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/estilo.css', media='screen')
+		title Prueba 1
+	body
+		table(width='1200', bordercolor='purple', align='center', border='10', cellspacing='10', cellpadding='10')
+			tr
+				td(colspan='7', align='left')
+					table(width='100%')
+						tr
+							td(colspan='4', align='left')
+								label(for='hash')
+								b.titulos People:
+							td(width='20%', align='center')
+								label(for='noPayments')
+								b.titulos Num Payments:
+							td(width='20%', align='center')
+								label(for='avg')
+								b.titulos Avg:
+							td(width='20%', align='center')
+								label(for='numCards')
+								b.titulos Num Cards:
+						tr
+							td(width='5%', align='right')
+								#mas_meses
+									img.datos(onclick='displayMeses()', alt='mores', src='/images/plus1.png')
+								#min_meses
+									img.datos(onclick='undisplayMeses()', alt='mores', src='/images/mins1.png')
+							td(colspan='3', align='left')
+								label(for='hash')
+								b.titulos Mujeres
+							td(width='20%', align='center')
+								label(for='noPayments')
+								b.datos 12123
+							td(width='20%', align='center')
+								label(for='avg')
+								b.datos 12123
+							td(width='20%', align='center')
+								label(for='numCards')
+								b.datos 12123
+						tr
+							td(colspan='7', align='left')
+								#meses
+									table(width='100%')
+										tr
+											td(width='5%', align='left')
+												label(for='hash')
+												b.titulos  
+											td(width='5%', align='right')
+												#mas_anios
+													img.datos(onclick='displayAnios()', alt='mores', src='/images/plus1.png')
+												#min_anios
+													img.datos(onclick='undisplayAnios()', alt='mores', src='/images/mins1.png')
+											td(colspan='2', align='left')
+												label(for='hash')
+												b.titulos Enero
+											td(width='20%', align='center')
+												label(for='noPayments')
+												b.datos 12123
+											td(width='20%', align='center')
+												label(for='avg')
+												b.datos 12123
+											td(width='20%', align='center')
+												label(for='numCards')
+												b.datos 12123
+										tr
+											td(colspan='7', align='left')
+												#anios
+													table(width='100%')
+														tr
+															td(width='5%', align='left')
+																label(for='hash')
+																b.titulos  
+															td(width='5%', align='left')
+																label(for='hash')
+																b.titulos  
+															td(width='5%', align='right')
+																#mas_cat
+																	img.datos(onclick='displayCategoria()', alt='mores', src='/images/plus1.png')
+																#min_cat
+																	img.datos(onclick='undisplayCategoria()', alt='mores', src='/images/mins1.png')
+															td(align='left')
+																label(for='hash')
+																b.titulos <= 18 a&ntilde;os
+															td(width='20%', align='center')
+																label(for='noPayments')
+																b.datos 12123
+															td(width='20%', align='center')
+																label(for='avg')
+																b.datos 12123
+															td(width='20%', align='center')
+																label(for='numCards')
+																b.datos 12123
+														tr
+															td(colspan='7', align='left')
+																#categoria
+																	table(width='100%')
+																		tr
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(align='left')
+																				label(for='hash')
+																				b.titulos Ropa
+																			td(width='20%', align='center')
+																				label(for='noPayments')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='avg')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='numCards')
+																				b.datos 12123
+																		tr
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(align='left')
+																				label(for='hash')
+																				b.titulos Viajes
+																			td(width='20%', align='center')
+																				label(for='noPayments')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='avg')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='numCards')
+																				b.datos 12123
+																		tr
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(align='left')
+																				label(for='hash')
+																				b.titulos Hoteles
+																			td(width='20%', align='center')
+																				label(for='noPayments')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='avg')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='numCards')
+																				b.datos 12123
+																		tr
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(align='left')
+																				label(for='hash')
+																				b.titulos Bares y Restaurantes
+																			td(width='20%', align='center')
+																				label(for='noPayments')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='avg')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='numCards')
+																				b.datos 12123
+																		tr
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(align='left')
+																				label(for='hash')
+																				b.titulos Moda
+																			td(width='20%', align='center')
+																				label(for='noPayments')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='avg')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='numCards')
+																				b.datos 12123
+																		tr
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(width='5%', align='left')
+																				label(for='hash')
+																				b.titulos  
+																			td(align='left')
+																				label(for='hash')
+																				b.titulos Salud
+																			td(width='20%', align='center')
+																				label(for='noPayments')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='avg')
+																				b.datos 12123
+																			td(width='20%', align='center')
+																				label(for='numCards')
+																				b.datos 12123

@@ -1,0 +1,44 @@
+.titulos { color: purple; font-size:17px; font-family:"Trebuchet MS", sans-serif;  font-weight: bold }
+.datos { color: black; font-size:15px; font-family:"Trebuchet MS", sans-serif;}
+.header { color: purple; font-size:20px; font-family:"Trebuchet MS", sans-serif;  font-weight: bold }
+.buscar_superior{ color: purple; font-size:25px; font-family:"Trebuchet MS", sans-serif; }
+#1aFila{
+	position:relative;
+	display:none;
+}
+#mas_1aFila{
+	position:relative;
+	display:none;
+}
+#min_1aFila{
+	position:relative;
+	display:block;
+}
+#datos_1aFila{
+	position:relative;
+	display:none;
+}
+#mas_2aFila{
+	position:relative;
+	display:none;
+}
+#min_2aFila{
+	position:relative;
+	display:block;
+}
+#2aFila{
+	position:relative;
+	display:none;
+}
+#mas_3aFila{
+	position:relative;
+	display:none;
+}
+#min_3aFila{
+	position:relative;
+	display:block;
+}
+#3aFila{
+	position:relative;
+	display:none;
+}

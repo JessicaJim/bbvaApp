@@ -1,0 +1,132 @@
+doctype 5
+html
+	head
+		script(type='text/javascript', src='/javascripts/formexp.js')
+		script(type='text/javascript', src='/javascripts/jquery.js')
+		script(type='text/javascript', src='/javascripts/funciones.js')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/estilo.css', media='screen')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/estiloDivs.css', media='screen')
+		title Poner titulo del proyecto
+	script.
+		function daFormato(datos){
+			for(var x=0;x<datos.length;x++){
+				for(var y=1; y<datos[x].length;y++){
+					for(var z=1; z<datos[x][y].length;z++){
+						unDisplayCat(x,y,z);
+					}
+					unDisplayCat(x,y,0);
+				}
+			}
+		}
+	body
+		table(width='60%', bordercolor='purple', align='center', border='10', cellspacing='10', cellpadding='10')
+			tr
+				td(colspan='7', align='left')
+					table(width='100%')
+						tr
+							td(colspan='5', align='left')
+								b.header Datos:
+							td(width='20%', align='center')
+								b.header  N&uacutemero de Pagos:
+							td(width='20%', align='center')
+								b.header Promedio:
+							td(width='20%', align='center')
+								b.header N&uacutemero de tarjetas:
+						- for(var a=0; a<datos.length;a++){
+						tr
+							td(width='5%', align='right')
+								div(id='mas_cat_'+a+'00')
+									img.datos(onclick='displayCat('+a+',0,0)', alt='mores', src='/images/plus1.png')
+								div(id='min_cat_'+a+'00')
+									img.datos(onclick='undisplayCat('+a+',0,0)',alt='min', src='/images/mins1.png')
+							td(colspan='4', width='35%' align='left')
+								b.titulos_0=titulos.cat0[a]
+							td(colspan='3', width='60%', align='left')
+								div(id='dat_cat_'+a+'00',)
+									table(width='100%')
+										tr
+											td(width='20%', align='center')
+												b.datos=datos[a][0][0][0][0]
+											td(width='20%', align='center')
+												b.datos=datos[a][0][0][0][1]
+											td(width='20%', align='center')
+												b.datos=datos[a][0][0][0][2]
+						tr
+							td(colspan='8', align='left')
+								div(id='div_cat_'+a+'00',display='none')
+									table(width='100%')
+										- for(var b=1; b<datos[a].length; b++){
+										tr
+											td(width='5%', align='left')
+												b.titulos
+											td(width='5%', align='right')
+												div(id='mas_cat_'+a+''+b+'0')
+													img.datos(onclick='displayCat('+a+','+b+',0)', alt='mores', src='/images/plus1.png')
+												div(id='min_cat_'+a+''+b+'0')
+													img.datos(onclick='undisplayCat('+a+','+b+',0)', alt='min', src='/images/mins1.png')
+											td(colspan='3', width='30%',align='left')
+												b.titulos_1=titulos.cat1[b-1]
+											td(colspan='3', widht='60%', align='left')
+												div(id='dat_cat_'+a+''+b+'0')
+													table(width='100%')
+														tr
+															td(width='20%', align='center')
+																b.datos=datos[a][b][0][0][0]
+															td(width='20%', align='center')
+																b.datos=datos[a][b][0][0][1]
+															td(width='20%', align='center')
+																b.datos=datos[a][b][0][0][2]
+										tr
+											td(colspan='8',align='left')
+												div(id='div_cat_'+a+''+b+'0')
+													table(width='100%')
+														-for(var c=1; c<datos[a][b].length; c++){
+														tr
+															td(width='5%', align='left')
+																b.titulos
+															td(width='5%', align='left')
+																b.titulos
+															td(width='5%', align='right')
+																div(id='mas_cat_'+a+''+b+''+c)
+																	img.datos(onclick='displayCat('+a+','+b+','+c+')', alt='mores', src='/images/plus1.png')
+																div(id='min_cat_'+a+''+b+''+c)
+																	img.datos(onclick='undisplayCat('+a+','+b+','+c+')', alt='min', src='/images/mins1.png')
+															td(colspan='2',width='25%',align='left')
+																b.titulos_2=titulos.cat2[c-1]
+															td(colspan='3', widht='60%', align='left')
+																div(id='dat_cat_'+a+''+b+''+c+'')
+																	table(width='100%')
+																		tr
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][0][0]
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][0][1]
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][0][2]
+														tr
+															td(colspan='8',align='left')
+																div(id='div_cat_'+a+''+b+''+c+'')
+																	table(width='100%')
+																		-for(var d=1; d<datos[a][b][c].length;d++){
+																		tr
+																			td(width='5%', align='left')
+																				b.titulos
+																			td(width='5%', align='left')
+																				b.titulos
+																			td(width='5%', align='right')
+																				b.titulos
+																			td(width='5%', align='left')
+																				b.titulos
+																			td(width='20%',align='left')
+																				b.titulos_3=titulos.cat3[d-1]
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][d][0]
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][d][1]
+																			td(width='20%', align='center')
+																				b.datos=datos[a][b][c][d][2]
+																		-}
+														-}
+										- }
+						- }
+
