@@ -19,7 +19,7 @@ html
 			}
 		}
 	body
-		table(width='60%', bordercolor='purple', align='center', border='10', cellspacing='10', cellpadding='10')
+		table(width='950', bordercolor='purple', align='center', border='10', cellspacing='10', cellpadding='10')
 			tr
 				td(colspan='7', align='left')
 					table(width='100%')
@@ -38,11 +38,11 @@ html
 								div(id='mas_cat_'+a+'00')
 									img.datos(onclick='displayCat('+a+',0,0)', alt='mores', src='/images/plus1.png')
 								div(id='min_cat_'+a+'00')
-									img.datos(onclick='undisplayCat('+a+',0,0)',alt='min', src='/images/mins1.png')
+									img.datos(onclick='undisplayCat('+a+',0,0)',alt='min',  src='/images/mins1.png')
 							td(colspan='4', width='35%' align='left')
 								b.titulos_0=titulos.cat0[a]
 							td(colspan='3', width='60%', align='left')
-								div(id='dat_cat_'+a+'00',)
+								div(id='dat_cat_'+a+'00')
 									table(width='100%')
 										tr
 											td(width='20%', align='center')
@@ -53,7 +53,7 @@ html
 												b.datos=datos[a][0][0][0][2]
 						tr
 							td(colspan='8', align='left')
-								div(id='div_cat_'+a+'00',display='none')
+								div(id='div_cat_'+a+'00')
 									table(width='100%')
 										- for(var b=1; b<datos[a].length; b++){
 										tr
@@ -115,8 +115,8 @@ html
 																				b.titulos
 																			td(width='5%', align='right')
 																				b.titulos
-																			td(width='5%', align='left')
-																				b.titulos
+																			td(width='5%', align='right')
+																				b.titulos ->
 																			td(width='20%',align='left')
 																				b.titulos_3=titulos.cat3[d-1]
 																			td(width='20%', align='center')

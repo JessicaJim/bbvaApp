@@ -5,122 +5,148 @@ var http=require('https');
 exports.index = function(req, res){
    //hacer la invocación del servDici BBVA
 
-var options = {
+//Cambiar por entradas
+var zipCode='08800';
+var cat_c=['es_fashion','es_food','es_tech'];
+var cat_n=['Moda','Comida','Tecnologia'];
+var stringE='edad-anio-cat_n-gene';
+//var stringE='edad-gene-anio-cat_n';
+//anio,'cat1':cat_n,'cat2':gene,'cat3':edad};
+
+var optionsCero= {
   host: 'api.bbva.com',
   port: 443,
   headers:{ 'Authorization' : 'amplc3NpY2EuamltOjkxNWRiM2VkMTUyNWQxYWM1MTJmZTdjY2RkZjJkMzJiNTIyODdjM2Q='},
-  path: 'https://api.bbva.com/apidatos/zones/cards_cube.json?date_min=20121101&date_max=20130401&group_by=month&zipcode=08800&zoom=2'
+  path: 'https://api.bbva.com/apidatos/zones/cards_cube.json?date_min=20121101&date_max=20130401&group_by=month&zipcode='+zipCode+'&zoom=2&category='+cat_c[0]
 };
 
-var optionsFood={
+var optionsUno={
   host: 'api.bbva.com',
   port: 443,
   headers:{ 'Authorization' : 'amplc3NpY2EuamltOjkxNWRiM2VkMTUyNWQxYWM1MTJmZTdjY2RkZjJkMzJiNTIyODdjM2Q='},
-  path: 'https://api.bbva.com/apidatos/zones/cards_cube.json?date_min=20121101&date_max=20130401&group_by=month&zipcode=08800&zoom=2&category=es_food'
+  path: 'https://api.bbva.com/apidatos/zones/cards_cube.json?date_min=20121101&date_max=20130401&group_by=month&zipcode='+zipCode+'&zoom=2&category='+cat_c[1]
 };
 
-var optionsTech={
+var optionsDos={
   host: 'api.bbva.com',
   port: 443,
   headers:{ 'Authorization' : 'amplc3NpY2EuamltOjkxNWRiM2VkMTUyNWQxYWM1MTJmZTdjY2RkZjJkMzJiNTIyODdjM2Q='},
-  path: 'https://api.bbva.com/apidatos/zones/cards_cube.json?date_min=20121101&date_max=20130401&group_by=month&zipcode=08800&zoom=2&category=es_tech'
+  path: 'https://api.bbva.com/apidatos/zones/cards_cube.json?date_min=20121101&date_max=20130401&group_by=month&zipcode='+zipCode+'&zoom=2&category='+cat_c[2]
 };
 
-var optionsBar={
-  host: 'api.bbva.com',
-  port: 443,
-  headers:{ 'Authorization' : 'amplc3NpY2EuamltOjkxNWRiM2VkMTUyNWQxYWM1MTJmZTdjY2RkZjJkMzJiNTIyODdjM2Q='},
-  path: 'https://api.bbva.com/apidatos/zones/cards_cube.json?date_min=20121101&date_max=20130401&group_by=month&zipcode=08800&zoom=2&category=es_barsandrestaurants'
-};
 
-var cate=['Comida','Tecnologia','Bar'];
 var gene=['Femenino','Masculino','Empresa','Indefinido'];
 var anio=['Noviembre 2012','Diciembre 2012','Enero 2013','Febrero 2013','Marzo 2013','Abril 2013'];
 var edad=['<= 18','19-25','26-35','36-45','46-55','56-66','>= 66','Desconocida'];
 
 
-//var patronGuardado=['cate-gene-anio-edad','cate-gene-edad-anio','cate-';
-
-var food=0; var tech=1; var bar=2;
 var ed=0;
 var gen=0;
 var dia=0;
 var j=0;
 
-var resultFood='';
-var resultTech='';
-var resultBar='';
+var resultCero='';
+var resultUno='';
+var resultDos='';
 
 var arr=new Array();
 var miJSON;
+var titulos={'cat0':cat_n,'cat1':anio,'cat2':gene,'cat3':edad};
 
-function creaFila(cat,stats){
-	for(dia=0;dia< stats.length+1 ;dia++){
-        	arr[cat][dia]=new Array();
-                for(gen=0; gen<4+1; gen++){
-			arr[cat][dia][gen]=new Array();
-                        for(ed=0; ed<8+1;ed++){
-                        	arr[cat][dia][gen][ed]=new Array();
-	}	}	}                
-        for(dia=1; dia<stats.length+1; dia++){
-		var cubo=stats[dia-1].cube;
+/*<Inicializa>*/
+titulos=setTitulos(stringE);
 
-                for(j=0;j<cubo.length; j++){
+for(var p1=0; p1<titulos.cat0.length; p1++){	
+    arr[p1]=new Array();
+    for(var p2=0;p2<(titulos.cat1.length)+1;p2++){
+    	arr[p1][p2]=new Array();
+        for(var p3=0; p3<(titulos.cat2.length)+1; p3++){
+	    arr[p1][p2][p3]=new Array();
+            for(var p4=0; p4<(titulos.cat3.length)+1; p4++){
+                arr[p1][p2][p3][p4]=new Array();
+}    }	}   }	
 
-                	var genl=cubo[j].hash.substr(0,1);
-                        var eda=cubo[j].hash.substr(2,3);
-                        
-			if(eda=="U"){    ed=8;     }
-                        else{           ed=1+parseInt(eda); }
-                        
-			if(genl=="F"){  	gen=1;    }
-                        else if(genl=="M"){  	gen=2;    }
-                        else if(genl=="E"){  	gen=3;    }
-			else if(genl=="U"){ 	gen=4;	  }
+/*</Inicio>*/
 
-                        arr[cat][dia][gen][ed]=[cubo[j].num_payments, cubo[j].avg , cubo[j].num_cards];
-                        //console.log('cat: '+ cat +' dia='+dia+' gen='+gen+' ed='+ed+'-->['+arr[food][dia][gen][ed]+' ]');
-		}
-	}
+function creaFilaConOrden(cati,dia,gen,ed,auxiliar){
+    var str=stringE.split('-');
+    var cat=cati+1;
+
+    //Ejemplo: 'edad-gene-anio-cat_n'
+        /*Original
+        arr[cat][dia][gen][ed]=[cubo[j].num_payments, cubo[j].avg , cubo[j].num_cards];
+        titulos={'cat0':cat_n,'cat1':anio,'cat2':gene,'cat3':edad};
+        */
+        //console.log('size 1a dim='+arr.length+' size 2a dim='+arr[0].length);
+        //console.log('Hace bien'+(dia-1)+''+(cat+1)+''+gen+''+ed);
+        //arr[dia-1][cat+1][gen][ed]=auxiliar;
+    var v0=dameElValor(str[0],cat,dia,gen,ed);
+    var v1=dameElValor(str[1],cat,dia,gen,ed);
+    var v2=dameElValor(str[2],cat,dia,gen,ed);
+    var v3=dameElValor(str[3],cat,dia,gen,ed);
+
+        arr[v0-1][v1][v2][v3]=auxiliar;
 }
 
 
-http.get(optionsFood, function(res1) {
-        res1.on('data', function (chunk) {
-                resultFood+=chunk; //va concatenando la respuesta
-        });
-        res1.on('end', function()
-        { //cuando se tiene toda el cuerpo de la respuesta con el JSON, se invoca la fusión de html + datos
-         var statsFood=JSON.parse(resultFood).data.stats;
-         arr[food]=new Array();
-	 creaFila(food,statsFood);
+function creaFila(cat,stats){
+    for(dia=1; dia<stats.length+1; dia++){
+	var cubo=stats[dia-1].cube;
+        for(j=0;j<cubo.length; j++){
+	    var genl=cubo[j].hash.substr(0,1);
+            var eda=cubo[j].hash.substr(2,3);
+                        
+		if(eda=="U"){    ed=8;     }
+                else{            ed=1+parseInt(eda); }
+                        
+		if(genl=="F"){  	gen=1;    }
+                else if(genl=="M"){  	gen=2;    }
+                else if(genl=="E"){  	gen=3;    }
+		else if(genl=="U"){ 	gen=4;	  }
+
+			
+                var auxiliar=[cubo[j].num_payments, cubo[j].avg , cubo[j].num_cards];
+		creaFilaConOrden(cat,dia,gen,ed,auxiliar);
+                        //arr[cat][dia][gen][ed]=[cubo[j].num_payments, cubo[j].avg , cubo[j].num_cards];
+                        //console.log('cat: '+ cat +' dia='+dia+' gen='+gen+' ed='+ed+'-->['+arr[food][dia][gen][ed]+' ]');
+	}
+    }
+}
+
+
+http.get(optionsCero, function(res1) {
+	res1.on('data', function (chunk) {
+   	resultCero+=chunk; //va concatenando la respuesta
+   });
+   res1.on('end', function()
+   { //cuando se tiene toda el cuerpo de la respuesta con el JSON, se invoca la fusión de html + datos
+    var statsCero=JSON.parse(resultCero).data.stats;
+	 creaFila(0,statsCero);
                  
-	 http.get(optionsTech,function(res2){
+	 http.get(optionsUno,function(res2){
 		res2.on('data',function(chunk2){
-			resultTech+=chunk2;
-                });
-                res2.on('end',function()
+			resultUno+=chunk2;
+   	});
+	  	res2.on('end',function()
 		{
-		 var statsTech=JSON.parse(resultTech).data.stats;
-		 arr[tech]=new Array();
-		 creaFila(tech,statsTech);
+		 var statsUno=JSON.parse(resultUno).data.stats;
+		 creaFila(1,statsUno);
 		
-		 http.get(optionsBar,function(res3){
-                	res3.on('data',function(chunk3){
-		                resultBar+=chunk3;
-                	});
-		        res3.on('end',function()
-                	{
-		         var statsBar=JSON.parse(resultBar).data.stats;
-                	 arr[bar]=new Array();
-		         creaFila(bar,statsBar);
+		 http.get(optionsDos,function(res3){
+     		res3.on('data',function(chunk3){
+		   	resultDos+=chunk3;
+         });
+			res3.on('end',function()
+			{
+		    var statsDos=JSON.parse(resultDos).data.stats;
+		    creaFila(2,statsDos);
 			
 
-			 hazSumaRows();	
-	
+		 	 hazSumaRows();	
+
 			 //printArr();
 			
-			 titulos={'cat0':cate,'cat1':anio,'cat2':gene,'cat3':edad};
+			 //titulos=creaTitulos();
 			 miJSON={'titulos':titulos,'datos': arr};
 			 res.render('index',miJSON);
 			});
@@ -134,11 +160,14 @@ http.get(optionsFood, function(res1) {
 });
 
 
+function creaTitulos(){
+	var titulos={'cat0':cat_n,'cat1':anio,'cat2':gene,'cat3':edad};
+	return titulos;
+}
 
 
 function hazSumaRows(){
   
-//    for(var a=0; a<arr.length; a++){
   var suma=[0,0,0]; var sumb=[0,0,0];
   var sumc=[0,0,0]; var sumd=[0,0,0];
     for(var a=0; a<arr.length; a++){
@@ -187,5 +216,29 @@ function printArr(){
 					console.log('Categoria:'+a+'C Dia:'+b+' Genero:'+c+' Edad:'+d+' -->'+arr[a][b][c][d]+'\n');
 	}	}	}	}
 }
+
+
+function setTitulos(string){
+    //var titulos={'cat0':cat_n,'cat1':anio,'cat2':gene,'cat3':edad};
+    var st=string.split("-");
+    var t={'cat0':getCat(st[0]),'cat1':getCat(st[1]),'cat2':getCat(st[2]),'cat3':getCat(st[3])};
+    console.log(t);
+    return t;
+}
+
+function getCat(st){
+   if(st==='cat_n'){		return cat_n;  }
+   else if(st==='anio'){	return anio;   }
+   else if(st==='gene'){	return gene;   }
+   else if(st==='edad'){	return edad;   }
+}
+
+function dameElValor(st,v0,v1,v2,v3){
+   if(st==='cat_n'){            return v0;  }
+   else if(st==='anio'){        return v1;   }
+   else if(st==='gene'){        return v2;   }
+   else if(st==='edad'){        return v3;   }
+}
+
 
 };
