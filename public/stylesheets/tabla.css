@@ -96,3 +96,29 @@ font-family:Arial;
 font-weight:bold;
 color:#ffffff;
 }
+.tabla_main{
+margin:0px;padding:0px;
+width:100%; box-shadow: 10px 10px 5px #888888;
+border:1px solid #000000;
+  
+-moz-border-radius-bottomleft:14px;
+-webkit-border-bottom-left-radius:14px;
+border-bottom-left-radius:14px;
+  
+-moz-border-radius-bottomright:14px;
+-webkit-border-bottom-right-radius:14px;
+border-bottom-right-radius:14px;
+  
+-moz-border-radius-topright:14px;
+-webkit-border-top-right-radius:14px;
+border-top-right-radius:14px;
+  
+-moz-border-radius-topleft:14px;
+-webkit-border-top-left-radius:14px;
+border-top-left-radius:14px;
+}
+.tabla_main table{
+width:100%;
+height:100%;
+margin:0px;padding:0px;
+}
