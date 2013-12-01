@@ -5,13 +5,39 @@ var http=require('https');
 exports.index = function(req, res){
    //hacer la invocación del servDici BBVA
 
-//Cambiar por entradas
-var zipCode='08800';
+//Zip Code
+var zipCode=req.query.zipCode;
+if(req.query.zipcode==null){	zipCode='08800';	}
+// Categorias
+var nombresCat;
+var selectCat=new Array();
+obtenerCategorias();
 var cat_c=['es_fashion','es_food','es_tech'];
 var cat_n=['Moda','Comida','Tecnologia'];
+if(req.query.cat!=null){
+	console.log('Request LENGTH...'+req.query.cat.length+'\n');
+	if(req.query.cat.length>=3){
+	    for(var i=0; i<3; i++){
+		var curr=req.query.cat[i];
+		var indice=parseInt(curr.substring(0,2));
+		cat_n[i]=nombresCat[indice];
+		selectCat[indice]='true';
+		cat_c[i]=curr.substring(2);
+	    }
+	}
+	console.log('Request ddesul..'+cat_c+'\n'+cat_n);
+}
+
+//Orden
 var stringE='edad-anio-cat_n-gene';
-//var stringE='edad-gene-anio-cat_n';
-//anio,'cat1':cat_n,'cat2':gene,'cat3':edad};
+var arrDim=['Edad','Mes','Categoria','Genero'];
+if(req.query.categoria!=null){	
+	stringE=req.query.categoria[0]+'-'+req.query.categoria[1]+'-'+req.query.categoria[2]+'-'+req.query.categoria[3];
+	arrDim[0]=setArrOpciones(req.query.categoria[0]);
+	arrDim[1]=setArrOpciones(req.query.categoria[1]);
+	arrDim[2]=setArrOpciones(req.query.categoria[2]);
+	arrDim[3]=setArrOpciones(req.query.categoria[3]);
+}
 
 var optionsCero= {
   host: 'api.bbva.com',
@@ -35,9 +61,9 @@ var optionsDos={
 };
 
 
-var gene=['Femenino','Masculino','Empresa','Indefinido'];
+var gene=['Mujeres','Hombres','Empresa','Indefinido'];
 var anio=['Noviembre 2012','Diciembre 2012','Enero 2013','Febrero 2013','Marzo 2013','Abril 2013'];
-var edad=['<= 18','19-25','26-35','36-45','46-55','56-66','>= 66','Desconocida'];
+var edad=['<= 18 años','19-25 años','26-35 años','36-45 años','46-55 años','56-66 años','>= 66 años','Edad Desconocida'];
 
 
 var ed=0;
@@ -147,7 +173,8 @@ http.get(optionsCero, function(res1) {
 			 //printArr();
 			
 			 //titulos=creaTitulos();
-			 miJSON={'titulos':titulos,'datos': arr};
+			 console.log('select: -> '+selectCat);
+			 miJSON={'categorias':nombresCat,'select':selectCat,'dim':arrDim,'dim_id':stringE.split('-'),'titulos':titulos,'datos': arr};
 			 res.render('index',miJSON);
 			});
 		 });
@@ -233,6 +260,13 @@ function getCat(st){
    else if(st==='edad'){	return edad;   }
 }
 
+function setArrOpciones(st){
+   if(st==='cat_n'){            return 'Categoria';  }
+   else if(st==='anio'){        return 'Mes';   }
+   else if(st==='gene'){        return 'Genero';   }
+   else if(st==='edad'){        return 'Edad';   }
+}
+
 function dameElValor(st,v0,v1,v2,v3){
    if(st==='cat_n'){            return v0;  }
    else if(st==='anio'){        return v1;   }
@@ -240,5 +274,11 @@ function dameElValor(st,v0,v1,v2,v3){
    else if(st==='edad'){        return v3;   }
 }
 
+function obtenerCategorias(){
+    nombresCat=['Auto','Bares y Restaurantes','Comida','Moda','Salud','Libros y Prensa', 'Casa', 'Hoteles','Viajes','Supermercados','Transporte','Belleza','Gobierno','Deporte y Juguetes','Ocio','Otros'];
+    for(var i=0; i<16;i++){
+    	selectCat[i]='false';
+    }
+}
 
 };
