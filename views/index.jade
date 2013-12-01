@@ -6,7 +6,9 @@ html
 		script(type='text/javascript', src='/javascripts/funciones.js')
 		link(rel='stylesheet', type='text/css', href='/stylesheets/estilo.css', media='screen')
 		link(rel='stylesheet', type='text/css', href='/stylesheets/estiloDivs.css', media='screen')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/tabla.css', media='screen')
 	body(onload='init(['+select+'])')
+		h1 BBVA Innova Challenge - Data Mining
 		table(width='1200',align='center',border='0') 
 			tr
 				td
@@ -14,10 +16,10 @@ html
 						table(width='100%', align='center', border='0')
 							tr
 								td(align='center',rowspan=2)
-									table(width='500', border='10', bordercolor='navy')
+									table(width='500', border='10', bordercolor='blue')
 										tr
 											td(align='center')
-												table(width='100%')
+												table(width='100%',class='tabla')
 													tr(align='center')
 														td.titulos(colspan='4', width='25%', height='30') Selecciona sólo 3 categorias, y el C.P. para analizar
 													tr.respuestas
@@ -70,7 +72,7 @@ html
 															input(type='checkbox', class='catChecked',  name='cat[]', id='cat14', value='14es_leisure')
 															b.respuestas=categorias[14]
 														td(width='25%', align='left')
-															input(type='checkbox', class='catChecked',  name='cat[]', id='cat15',value='15es_otherservices')
+															input(type='checkbox', class='catChecked',  name='cat[]', id='cat15',value='15es_tech')
 															b.respuestas=categorias[15]
 													tr
 														td.datos( colspan=2, width='40%', align='right')  Código Postal
@@ -87,8 +89,11 @@ html
 									table(width='340', border='10', bordercolor='blue')
 										tr
 											td(align='center')
-												table(width='100%')
-													tr(align='center')
+												table(width='100%',class='tabla')
+													tr(align='center',class='tabla')
+														td.titulos(width='40%', height='30') Orden
+														td Vista
+													tr(align='center',)
 														td.titulos(width='40%', height='30') 1a Dimensión
 														td
 															select#1a_cat.respuestas(name='categoria',onclick='seleccionar(2)')
@@ -120,17 +125,18 @@ html
 																option(value=''+dim_id[0])=dim[0]
 																option(value=''+dim_id[1])=dim[1]
 																option(value=''+dim_id[2])=dim[2]
-							tr
-								td(align='center', height='50',colspan=3)
-									input.respuestas(type='button', onClick="validar('myForm')", value='Generar')	
+													tr(align='center')
+														td(colspan='2')
+															input.respuestas(type='button', onClick="validar('myForm')", value='Generar',class='boton')
+
 			tr	
 				td
-						table(width='900', bordercolor='purple', align='center', border='10', cellspacing='10', cellpadding='10')
+						table(width='900', bordercolor='blue', align='center', border='10', cellspacing='10', cellpadding='10')
 							tr
 								td(colspan='7', align='left')
-									table(width='100%')
-										tr
-											td(colspan='5', align='left')
+									table(width='100%',class='tabla_main')
+										tr(class='main_tr')
+											td(colspan='5', align='center')
 												b.header Datos:
 											td(width='20%', align='center')
 												b.header  N&uacutemero de Pagos:
