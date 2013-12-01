@@ -96,9 +96,3 @@ font-family:Arial;
 font-weight:bold;
 color:#ffffff;
 }
-
-.tabla_main tr:nth-child(odd){ background-color:#aad4ff; }
-.tabla_main tr:nth-child(even)    { background-color:#ffffff; }
-.tabla td{
-	vertical-align:middle;
-}
