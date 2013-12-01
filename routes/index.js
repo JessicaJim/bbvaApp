@@ -38,30 +38,46 @@ if(req.query.cat!=null){
 //Orden
 var stringE='edad-anio-cat_n-gene';
 var arrDim=['Edad','Mes','Categoria','Genero'];
-if(req.query.categoria!=null){	
-	stringE=req.query.categoria[0]+'-'+req.query.categoria[1]+'-'+req.query.categoria[2]+'-'+req.query.categoria[3];
-	arrDim[0]=setArrOpciones(req.query.categoria[0]);
-	arrDim[1]=setArrOpciones(req.query.categoria[1]);
-	arrDim[2]=setArrOpciones(req.query.categoria[2]);
-	arrDim[3]=setArrOpciones(req.query.categoria[3]);
+if(req.query.cat_1a!=null){	
+	stringE=req.query.cat_1a+'-'+req.query.cat_2a+'-'+req.query.cat_3a+'-'+req.query.cat_4a;
+	console.log('Ste=>'+stringE);
+	arrDim[0]=setArrOpciones(req.query.cat_1a);
+	arrDim[1]=setArrOpciones(req.query.cat_2a);
+	arrDim[2]=setArrOpciones(req.query.cat_3a);
+	arrDim[3]=setArrOpciones(req.query.cat_4a);
 }
 
-var options=new Array();
-var result=new Array();
-for(var i=0; i<cat_c.length; i++){
-  options[i]= {
+var options0= {
     host: 'api.bbva.com',
     port: 443,
     headers:{ 'Authorization' : 'amplc3NpY2EuamltOjkxNWRiM2VkMTUyNWQxYWM1MTJmZTdjY2RkZjJkMzJiNTIyODdjM2Q='},
-    path: 'https://api.bbva.com/apidatos/zones/cards_cube.json?date_min=20121101&date_max=20130401&group_by=month&zipcode='+zipCode+'&zoom=2&category='+cat_c[i]
+    path: 'https://api.bbva.com/apidatos/zones/cards_cube.json?date_min=20121101&date_max=20130401&group_by=month&zipcode='+zipCode+'&zoom=2&category='+cat_c[0]
+};
+
+if(cat_c.length>1){
+  var options1= {
+    host: 'api.bbva.com',
+    port: 443,
+    headers:{ 'Authorization' : 'amplc3NpY2EuamltOjkxNWRiM2VkMTUyNWQxYWM1MTJmZTdjY2RkZjJkMzJiNTIyODdjM2Q='},
+    path: 'https://api.bbva.com/apidatos/zones/cards_cube.json?date_min=20121101&date_max=20130401&group_by=month&zipcode='+zipCode+'&zoom=2&category='+cat_c[1]
   };
-  result[i]='';
 }
 
+if(cat_c.length>2){
+  var options2= {
+    host: 'api.bbva.com',
+    port: 443,
+    headers:{ 'Authorization' : 'amplc3NpY2EuamltOjkxNWRiM2VkMTUyNWQxYWM1MTJmZTdjY2RkZjJkMzJiNTIyODdjM2Q='},
+    path: 'https://api.bbva.com/apidatos/zones/cards_cube.json?date_min=20121101&date_max=20130401&group_by=month&zipcode='+zipCode+'&zoom=2&category='+cat_c[2]
+  };
+}
 var gene=['Mujeres','Hombres','Empresa','Indefinido'];
 var anio=['Noviembre 2012','Diciembre 2012','Enero 2013','Febrero 2013','Marzo 2013','Abril 2013'];
 var edad=['<= 18 años','19-25 años','26-35 años','36-45 años','46-55 años','56-66 años','>= 66 años','Edad Desconocida'];
 
+var result0='';
+var result1='';
+var result2='';
 
 var ed=0;
 var gen=0;
@@ -121,52 +137,59 @@ function creaFila(cat,stats){
 }
 
 
-http.get(options[0], function(res1) {
+http.get(options0, function(res1) {
 	res1.on('data', function (chunk) {
-   	result[0]+=chunk; //va concatenando la respuesta
+   	result0+=chunk; //va concatenando la respuesta
    });
    res1.on('end', function()
    { //cuando se tiene toda el cuerpo de la respuesta con el JSON, se invoca la fusión de html + datos
-    var statsCero=JSON.parse(result[0]).data.stats;
+    var statsCero=JSON.parse(result0).data.stats;
     creaFila(0,statsCero);
-    if(options.length>1){             
-	 http.get(options[1],function(res2){
+    if(cat_c.length>1){             
+	 http.get(options1,function(res2){
 		res2.on('data',function(chunk2){
-			result[1]+=chunk2;
+			result1+=chunk2;
    		});
 	  	res2.on('end',function()
 		{
-		 var statsUno=JSON.parse(result[1]).data.stats;
+		 var statsUno=JSON.parse(result1).data.stats;
 		 creaFila(1,statsUno);
 
-		 if(options.length>2){
-		     http.get(options[2],function(res3){
+		 if(cat_c.length>2){
+		     http.get(options2,function(res3){
         	       res3.on('data',function(chunk3){
-      		 	     result[2]+=chunk3;
+      		 	     result2+=chunk3;
 	               });
 		       res3.on('end',function()
 		       {
-		         var statsDos=JSON.parse(result[2]).data.stats;
+		         var statsDos=JSON.parse(result2).data.stats;
                           creaFila(2,statsDos);
 			
 
-		 	 //hazSumaRows();	
+		 	 hazSumaRows();	
 
 			 //printArr();
 			
-			 //miJSON={'categorias':nombresCat,'select':selectCat,'dim':arrDim,'dim_id':stringE.split('-'),'titulos':titulos,'datos': arr};
-			 //res.render('index',miJSON);
+			 miJSON={'categorias':nombresCat,'select':selectCat,'dim':arrDim,'dim_id':stringE.split('-'),'titulos':titulos,'codigo':cp,'datos': arr};
+			 res.render('index',miJSON);
 			});
 		  });
-		} });        
+		}else{
+	        hazSumaRows();
+
+	        miJSON={'categorias':nombresCat,'select':selectCat,'dim':arrDim,'dim_id':stringE.split('-'),'titulos':titulos,'codigo':cp,'datos': arr};
+        	res.render('index',miJSON);
+
+		}
+	       });        
  	 });
 
-   }
-    hazSumaRows();
+   }else{
+	hazSumaRows();
 
-   miJSON={'categorias':nombresCat,'select':selectCat,'dim':arrDim,'dim_id':stringE.split('-'),'titulos':titulos,'codigo':cp,'datos': arr};
-   res.render('index',miJSON);
- 
+   	miJSON={'categorias':nombresCat,'select':selectCat,'dim':arrDim,'dim_id':stringE.split('-'),'titulos':titulos,'codigo':cp,'datos': arr};
+	res.render('index',miJSON);
+   }
    });
 }).on('error', function(e) {
   console.log("Got error: " + e.message);
