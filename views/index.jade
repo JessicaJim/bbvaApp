@@ -15,8 +15,8 @@ html
 					form(action='/', method='get',id="myForm")
 						table(width='100%', align='center', border='0')
 							tr
-								td(align='center',rowspan=2)
-									table(width='500', border='10', bordercolor='blue')
+								td(align='center')
+									table(width='600', border='0', bordercolor='blue')
 										tr
 											td(align='center')
 												table(width='100%',class='tabla')
@@ -75,8 +75,9 @@ html
 															input(type='checkbox', class='catChecked',  name='cat[]', id='cat15',value='15es_tech')
 															b.respuestas=categorias[15]
 													tr
-														td.datos( colspan=1, align='right')  C.P.
-														td.respuestas(colspan=3, align='left')
+														td(colspan=2, style="text-align: right;") 
+															b.respuestas Código Postal:
+														td.respuestas(colspan=2, align='left')
 															select#zipCode.respuestas(name='zipCode')
 																option(value=''+codigo)=codigo
 																option(value='08301-Mataró') 08301-Mataró
@@ -105,39 +106,43 @@ html
 																option(value='08980-Sant Feliu de Llobregat') 08980-Sant Feliu de Llobregat
 																option(value='08320-el Masnou') 08320-el Masnou
 								td(align='center')
-									table(width='340', border='10', bordercolor='blue')
+									table(width='340', border='0', bordercolor='blue')
 										tr
 											td(align='center')
 												table(width='100%',class='tabla')
 													tr(align='center',class='tabla')
-														td.titulos(width='40%', height='30') Orden
+														td.titulos(width='40%', height='20') Orden
 														td Vista
-													tr(align='center',)
-														td.titulos(width='40%', height='30') 1a Dimensión
+													tr(align='center',style="text-align: center;")
+														td.titulos(width='40%', height='15') 
+															b.respuestas 1a Dimensión
 														td
 															select#1a_cat.respuestas(name='categoria',onclick='seleccionar(2)')
 																option(value=''+dim_id[0])=dim[0]
 																option(value=''+dim_id[1])=dim[1]
 																option(value=''+dim_id[2])=dim[2]
 																option(value=''+dim_id[3])=dim[3]
-													tr(align='center')
-														td.titulos(width='40%', height='30') 2a Dimensión
+													tr(style="text-align: right;")
+														td.titulos(width='40%', height='15') 
+															b.respuestas 2a Dimensión
 														td
 															select#2a_cat.respuestas(name='categoria',onclick='seleccionar(3)')
 																option(value=''+dim_id[1])=dim[1]
 																option(value=''+dim_id[2])=dim[2]
 																option(value=''+dim_id[3])=dim[3]
 																option(value=''+dim_id[0])=dim[4]
-													tr(align='center')
-														td.titulos(width='40%', height='30') 3a Dimensión
+													tr(style="text-align: right;")
+														td.titulos(width='40%', height='15') 
+															b.respuestas 3a Dimensión
 														td
 															select#3a_cat.respuestas(name='categoria',onclick='seleccionar(4)')
 																option(value=''+dim_id[2])=dim[2]
 																option(value=''+dim_id[3])=dim[3]
 																option(value=''+dim_id[0])=dim[4]
 																option(value=''+dim_id[1])=dim[0]
-													tr(align='center')
-														td.titulos(width='40%', height='30') 4a Dimensión
+													tr(style="text-align: right;")
+														td.titulos(width='40%', height='15') 
+															b.respuestas 4a Dimensión
 														td
 															select#4a_cat.respuestas(name='categoria')
 																option(value=''+dim_id[3])=dim[3]
@@ -147,10 +152,11 @@ html
 													tr(align='center')
 														td(colspan='2')
 															input.respuestas(type='button', onClick="validar('myForm')", value='Generar',class='boton')
-
+							tr
+								td(height='40')
 			tr	
 				td
-						table(width='900', bordercolor='blue', align='center', border='10', cellspacing='10', cellpadding='10')
+						table(width='900', bordercolor='blue', align='center', border='0', cellspacing='10', cellpadding='10')
 							tr
 								td(colspan='7', align='left')
 									table(width='100%',class='tabla_main')
@@ -158,9 +164,9 @@ html
 											td(colspan='5', align='center')
 												b.header Datos:
 											td(width='20%', align='center')
-												b.header  N&uacutemero de Pagos:
+												b.header N&uacutemero de Pagos:
 											td(width='20%', align='center')
-												b.header Promedio:
+												b.header Gasto Promedio:
 											td(width='20%', align='center')
 												b.header N&uacutemero de tarjetas:
 										- for(var a=0; a<datos.length;a++){
