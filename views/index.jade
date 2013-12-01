@@ -19,7 +19,7 @@ html
 											td(align='center')
 												table(width='100%')
 													tr(align='center')
-														td.titulos(colspan='4', width='25%', height='30') Selecciona sólo 3 categorias, y el C.P. para analizar
+														td.titulos(colspan='4', width='25%', height='30') Selecciona 3 o menos categorias, y el C.P. para analizar
 													tr.respuestas
 														td(width='17.5%', align='left')
 															input(type='checkbox', class='catChecked', name='cat[]', id='cat0', value='00es_auto')
@@ -70,19 +70,38 @@ html
 															input(type='checkbox', class='catChecked',  name='cat[]', id='cat14', value='14es_leisure')
 															b.respuestas=categorias[14]
 														td(width='25%', align='left')
-															input(type='checkbox', class='catChecked',  name='cat[]', id='cat15',value='15es_otherservices')
+															input(type='checkbox', class='catChecked',  name='cat[]', id='cat15',value='15es_tech')
 															b.respuestas=categorias[15]
 													tr
-														td.datos( colspan=2, width='40%', align='right')  Código Postal
-														td.respuestas(colspan=2, width='60%', align='left')
+														td.datos( colspan=1, align='right')  C.P.
+														td.respuestas(colspan=3, align='left')
 															select#zipCode.respuestas(name='zipCode')
-																option(value='08301') 08301
-																option(value='08302') 08302
-																option(value='08303') 08303
-																option(value='08370') 08370 
-																option(value='08397') 08397 
-																option(value='08800') 08800
-								td.titulos(width='5')
+																option(value=''+codigo)=codigo
+																option(value='08301-Mataró') 08301-Mataró
+																option(value='08370-Calella') 08370-Calella
+																option(value='08380-Malgrat de Mar') 08380-Malgrat de Mar
+																option(value='08397-Pineda de Mar') 08397-Pineda de Mar
+																option(value='08398-Santa Susanna, Catalonia-') 08398-Santa Susanna, Catalonia
+																option(value='08401-Granollers') 08401-Granollers
+																option(value='08620-Sant Vicenç dels Horts') 08620-Sant Vicenç dels Horts
+																option(value='08630-Abrera') 08630-Abrera
+																option(value='08640-Olesa de Montserrat') 08640-Olesa de Montserrat
+																option(value='08740-Sant Andreu de la Barca') 08740-Sant Andreu de la Barca
+																option(value='08758-Cervelló') 08758-Cervelló
+																option(value='08800-Vilanova i la Geltrú') 08800-Vilanova i la Geltrú
+																option(value='08810-Sant Pere de Ribes') 08810-Sant Pere de Ribes
+																option(value='08820-el Prat de Llobregat') 08820-el Prat de Llobregat
+																option(value='08830-Sant Boi de Llobregat') 08830-Sant Boi de Llobregat
+																option(value='08840-Viladecans') 08840-Viladecans
+																option(value='08850-Gavà') 08850-Gavà
+																option(value='08860-Castelldefels') 08860-Castelldefels
+																option(value='08870-Sitges') 08870-Sitges
+																option(value='08940-Cornellà de Llobregat') 08940-Cornellà de Llobregat
+																option(value='08950-Esplugues de Llobregat') 08950-Esplugues de Llobregat
+																option(value='08960-Sant Just Desvern') 08960-Sant Just Desvern
+																option(value='08970-Sant Joan Despí') 08970-Sant Joan Despí
+																option(value='08980-Sant Feliu de Llobregat') 08980-Sant Feliu de Llobregat
+																option(value='08320-el Masnou') 08320-el Masnou
 								td(align='center')
 									table(width='340', border='10', bordercolor='blue')
 										tr
