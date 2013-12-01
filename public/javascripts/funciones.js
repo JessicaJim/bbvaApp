@@ -49,7 +49,6 @@ function validar(idForm){
 function daAlert(){
 	alert("Debes seleccionar un valor para todas las dimensiones");
 }
-
 function validar1213(){
 	if ($('#1a_cat option:selected').text() ===""
 	|| $('#2a_cat option:selected').text() === ""
